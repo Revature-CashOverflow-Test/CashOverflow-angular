@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { BankAccountService } from 'src/app/service/bankAccount/bank-account.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -10,7 +11,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./create-bank-account-form.component.css'],
 })
 export class CreateBankAccountFormComponent implements OnInit {
-  
+
   bankAccount = {
     name: 'asdff',
     description: 'zxcfv',
@@ -26,7 +27,8 @@ export class CreateBankAccountFormComponent implements OnInit {
   constructor(
     private bankAccountService: BankAccountService,
     private cookieServ: CookieService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {}
@@ -39,11 +41,16 @@ export class CreateBankAccountFormComponent implements OnInit {
     this.bankAccount.name = data.formName;
     this.bankAccount.description = data.formDescription;
     this.bankAccount.accountTypeId = data.formAccountType;
-    
+
     this.bankAccountService.setUserBankAccounts(this.bankAccount).subscribe(
       (resp) => {
+        this.success();
         this.router.navigate(['/feed'])
       }
     );
+  }
+
+  success(): void {
+    this.toastr.success('Success', `${this.bankAccount.name} has been successfully created`)
   }
 }

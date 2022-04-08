@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import { EmailService } from './../../service/email/email.service';
 import { UserAccount } from './../../model/user-account';
 import { Component, OnInit, Optional } from '@angular/core';
+=======
+import { ToastrService } from 'ngx-toastr';
+import { Component, OnInit } from '@angular/core';
+>>>>>>> 51da8631e4ade7e0ae8514302f40a7205e468373
 import { BankAccount } from '../../model/bank-account';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BankAccountService } from '../../service/bankAccount/bank-account.service';
@@ -28,6 +33,7 @@ export class TransferMoneyOwnedComponent implements OnInit {
   }
 
 
+
   transferForm = new FormGroup({
     transferFromAccount: new FormControl(''),
     transferToAccount: new FormControl(''),
@@ -38,6 +44,7 @@ export class TransferMoneyOwnedComponent implements OnInit {
     private bankAccountService: BankAccountService,
     private router: Router,
     private emailService: EmailService
+    private toastr: ToastrService
   ) {}
 
   onSubmit() {
@@ -55,10 +62,11 @@ export class TransferMoneyOwnedComponent implements OnInit {
 
             this.emailService.sendEmailBasic(email);
         }
-
+          this.success();
           this.router.navigate(['/feed']);
         },
         (msg) => {
+          this.error();
           this.showErrorMessage = true;
         }
       );
@@ -69,5 +77,13 @@ export class TransferMoneyOwnedComponent implements OnInit {
     if (this.bankAccounts.length != 0 && this.bankAccounts[0].user) {
       this.currentUser = this.bankAccounts[0].user;
     }
+  }
+
+  success(): void {
+    this.toastr.success('Transfer Success', `Please verify your accounts have updated.`)
+  }
+
+  error(): void {
+    this.toastr.error('Transfer Error', 'Something went wrong with the transfer, please try again.')
   }
 }

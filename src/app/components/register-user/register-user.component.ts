@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, ɵNOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -29,7 +30,7 @@ export class RegisterUserComponent implements OnInit {
     email: new FormControl(''),
   });
 
-  constructor(private regServ: RegisterService) {}
+  constructor(private regServ: RegisterService, private toastr: ToastrService) {}
 
   ngOnInit(): void {}
 
@@ -44,24 +45,39 @@ export class RegisterUserComponent implements OnInit {
     if (this.password != this.password2) {
       document.getElementById('password2')?.classList.add('is-invalid');
       this.regSuccess = 0;
+      this.passwordMatchError();
       return;
     }
 
-    
+
 
     for(let item in this.registerForm){
       if(item){
       }
     }
 
-    
+
     this.regServ.sendRegisterData(this.registerForm.value).subscribe(
       (data) => {
         this.regSuccess = 1;
+        this.success();
       },
       (error: HttpErrorResponse) => {
         this.regSuccess = 2;
+        this.error();
       }
     );
+  }
+
+  success(): void {
+    this.toastr.success('Registration Success!', `You have been successfully registered`);
+  }
+
+  passwordMatchError(): void {
+    this.toastr.error('Registration Error', 'Entered passwords do not match')
+  }
+
+  error(): void {
+    this.toastr.error('Registration error', 'There was a problem registering your account. Please try again.')
   }
 }

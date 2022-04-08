@@ -6,4 +6,6 @@ export interface UserAccount {
   lastName: string;
   password: string;
   creationDate: string;
+  emailToggle: boolean;
+  emailValue: number;
 }
