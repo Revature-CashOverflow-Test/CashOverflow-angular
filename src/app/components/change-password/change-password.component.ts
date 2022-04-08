@@ -2,6 +2,8 @@ import { ChangePasswordService } from './../../service/change-password/change-pa
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-change-password',
@@ -10,6 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class ChangePasswordComponent implements OnInit {
 
+  numberOfAttempts:number = 5;
   changePasswordSuccess:number = 0
   numberOfSpecialCharacter:number = 0
   numberOfNumbers:number = 0
@@ -27,7 +30,7 @@ export class ChangePasswordComponent implements OnInit {
     retypePassword: new FormControl(''),
   })
 
-  constructor(private changePassServ: ChangePasswordService) { }
+  constructor(private changePassServ: ChangePasswordService, private cookieServ: CookieService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -96,7 +99,14 @@ export class ChangePasswordComponent implements OnInit {
         this.errorMessage = 'The passwords do not match.'
       }
     }else{
-      this.errorMessage = 'The current password doesnt match'
+      if(this.numberOfAttempts != 0){
+        this.errorMessage = `The current password doesnt match ${this.numberOfAttempts} attenpts remaining.`
+        this.numberOfAttempts--;
+      }else{
+        this.cookieServ.delete('token', '/');
+        this.router.navigate(['/login']);
+      }
+
     }
 
 
