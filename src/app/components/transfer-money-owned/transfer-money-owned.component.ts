@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 import { EmailService } from './../../service/email/email.service';
 import { UserAccount } from './../../model/user-account';
 import { Component, OnInit, Optional } from '@angular/core';
-=======
 import { ToastrService } from 'ngx-toastr';
-import { Component, OnInit } from '@angular/core';
->>>>>>> 51da8631e4ade7e0ae8514302f40a7205e468373
 import { BankAccount } from '../../model/bank-account';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BankAccountService } from '../../service/bankAccount/bank-account.service';
@@ -43,7 +39,7 @@ export class TransferMoneyOwnedComponent implements OnInit {
   constructor(
     private bankAccountService: BankAccountService,
     private router: Router,
-    private emailService: EmailService
+    private emailService: EmailService,
     private toastr: ToastrService
   ) {}
 
