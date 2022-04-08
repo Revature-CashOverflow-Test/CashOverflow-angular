@@ -1,5 +1,75 @@
 body {
+
+
+background: var(--bkg-color);
+
     background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');
     background-repeat: no-repeat;
     background-attachment: fixed;
 }
+
+body {
+    --text-color: #222;
+    --bkg-color: #fff;
+    --btn-txt-color: white;
+    --btn-bg-color: rgb(11, 88, 160);
+}
+
+ body.dark-theme {
+  --text-color: #eee;
+  --bkg-color: #252222;
+  --btn-txt-color: rgb(46, 43, 43);
+  --btn-bg-color: rgb(20, 211, 195);
+}
+
+nav.dark-theme {
+  --text-color: #eee;
+  --background-color: #252222;
+  --btn-txt-color: rgb(46, 43, 43);
+  --btn-bg-color: rgb(20, 211, 195);
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --image-filter: grayscale(50%);
+  }
+
+  img:not([src*=".svg"]) {
+    filter: var(--image-filter);
+  }
+} */
+
+/* body {
+  background: var(--bkg-color);
+} */
+
+/* #login-card {
+  --text-color: #222;
+  --bkg-color: #fff;
+  --btn-txt-color: red;
+  --btn-bg-color: rgb(11, 88, 160);
+} */
+
+/* .card.dark-theme {
+  --text-color: #eee;
+  --bkg-color: #252222;
+  --btn-txt-color: rgb(46, 43, 43);
+  --btn-bg-color: rgb(20, 211, 195);
+} */
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 2px;
+  color: var(--btn-txt-color);
+  background-color: var(--btn-bg-color);
+}
+
+nav {
+  background-color: var(--bkg-color);
+  color: var(--text-color);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

@@ -1,3 +1,10 @@
 .card {
     background-color: rgba(255, 255, 255, 0.781);
 }
+
+.card.dark-theme {
+  --text-color: #eee;
+  --bkg-color: #252222;
+  --btn-txt-color: rgb(46, 43, 43);
+  --btn-bg-color: rgb(20, 211, 195);
+}

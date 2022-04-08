@@ -27,6 +27,7 @@ import { BankAccountInfoComponent } from './components/bank-account-info/bank-ac
 import { BankAccountMoneyTransferComponent } from './page-layouts/bank-account-money-transfer/bank-account-money-transfer.component';
 import { ManageAccountBalanceComponent } from './page-layouts/manage-account-balance/manage-account-balance.component';
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { TransactionListComponent } from './components/transaction-list/transact
     FormsModule,
     HttpClientModule,
     FormsModule,
-    JwtModule
+    JwtModule,
+    BrowserAnimationsModule
   ],
   providers: [
     RegisterService,

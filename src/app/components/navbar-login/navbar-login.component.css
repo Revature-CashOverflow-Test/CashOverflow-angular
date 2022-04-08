@@ -11,7 +11,15 @@
 
 nav {
     margin-bottom: 100px;
+
 }
+
+/* nav.dark-theme {
+  --text-color: #eee;
+  --background-color: #252222;
+  --btn-txt-color: rgb(46, 43, 43);
+  --btn-bg-color: rgb(20, 211, 195);
+} */
 
 
 /* -------------------------------------------- */
