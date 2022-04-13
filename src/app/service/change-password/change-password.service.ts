@@ -21,7 +21,8 @@ export class ChangePasswordService {
       username:username,
       newPassword:newPassword
     }
-    return this.http.put<any>(`${environment.apiURL}/changePassword`, payload, options)
+
+    return this.http.put(`${environment.apiURL}/changePassword`, payload, options)
 
   }
 }
