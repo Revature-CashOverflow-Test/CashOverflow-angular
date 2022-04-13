@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,7 +30,10 @@ import { BankAccountInfoComponent } from './components/bank-account-info/bank-ac
 import { BankAccountMoneyTransferComponent } from './page-layouts/bank-account-money-transfer/bank-account-money-transfer.component';
 import { ManageAccountBalanceComponent } from './page-layouts/manage-account-balance/manage-account-balance.component';
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { SettingsComponent } from './page-layouts/settings/settings.component'
 
 @NgModule({
   declarations: [
@@ -44,12 +50,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RegisterPageComponent,
     NavbarLoginComponent,
     NavbarGeneralComponent,
+    ChangePasswordComponent,
     BankAccountRegisterPageComponent,
     BankAccountPageComponent,
     BankAccountInfoComponent,
     BankAccountMoneyTransferComponent,
     ManageAccountBalanceComponent,
     TransactionListComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +67,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     JwtModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     RegisterService,

@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { BankAccount } from '../../model/bank-account';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -14,6 +15,7 @@ export class TransferMoneyOwnedComponent implements OnInit {
   currentBankAccount: BankAccount | undefined;
   showErrorMessage: boolean = false;
 
+
   transferForm = new FormGroup({
     transferFromAccount: new FormControl(''),
     transferToAccount: new FormControl(''),
@@ -22,7 +24,8 @@ export class TransferMoneyOwnedComponent implements OnInit {
 
   constructor(
     private bankAccountService: BankAccountService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   onSubmit() {
@@ -31,9 +34,11 @@ export class TransferMoneyOwnedComponent implements OnInit {
       .transferFundsOwned(this.transferForm.value)
       .subscribe(
         (resp) => {
+          this.success();
           this.router.navigate(['/feed']);
         },
         (msg) => {
+          this.error();
           this.showErrorMessage = true;
         }
       );
@@ -41,5 +46,13 @@ export class TransferMoneyOwnedComponent implements OnInit {
 
   ngOnInit(): void {
     this.bankAccounts = this.bankAccountService.getBankAccounts();
+  }
+
+  success(): void {
+    this.toastr.success('Transfer Success', `Please verify your accounts have updated.`)
+  }
+
+  error(): void {
+    this.toastr.error('Transfer Error', 'Something went wrong with the transfer, please try again.')
   }
 }
