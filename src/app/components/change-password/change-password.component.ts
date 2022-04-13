@@ -2,6 +2,9 @@ import { ChangePasswordService } from './../../service/change-password/change-pa
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-change-password',
@@ -10,6 +13,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class ChangePasswordComponent implements OnInit {
 
+  numberOfAttempts:number = 5;
   changePasswordSuccess:number = 0
   numberOfSpecialCharacter:number = 0
   numberOfNumbers:number = 0
@@ -27,7 +31,7 @@ export class ChangePasswordComponent implements OnInit {
     retypePassword: new FormControl(''),
   })
 
-  constructor(private changePassServ: ChangePasswordService) { }
+  constructor(private changePassServ: ChangePasswordService, private cookieServ: CookieService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -77,10 +81,14 @@ export class ChangePasswordComponent implements OnInit {
             this.errorMessage = ''
             this.changePassServ.sendPasswordData(username, newPassword).subscribe(
               (data) => {
-                this.changePasswordSuccess = 1
+                if(data){
+                  this.toastr.success('You have successfully changed your password. Please log back in with your new password.', `Password Changed!`);
+                  this.cookieServ.delete('token', '/');
+                  this.router.navigate(['/login']);
+                }
               },
               (error: HttpErrorResponse) => {
-                this.changePasswordSuccess = 2
+                console.log(error)
               }
             )
           }else{
@@ -96,7 +104,14 @@ export class ChangePasswordComponent implements OnInit {
         this.errorMessage = 'The passwords do not match.'
       }
     }else{
-      this.errorMessage = 'The current password doesnt match'
+      if(this.numberOfAttempts != 0){
+        this.errorMessage = `The current password doesnt match ${this.numberOfAttempts} attempts remaining.`
+        this.numberOfAttempts--;
+      }else{
+        this.cookieServ.delete('token', '/');
+        this.router.navigate(['/login']);
+      }
+
     }
 
 
