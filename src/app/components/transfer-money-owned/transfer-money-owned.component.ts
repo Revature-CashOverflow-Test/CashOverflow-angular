@@ -22,7 +22,6 @@ export class TransferMoneyOwnedComponent implements OnInit {
     username: '',
     firstName: '',
     lastName: '',
-    password: '',
     creationDate: '',
     emailToggle: false,
     emailValue: 0
@@ -49,12 +48,12 @@ export class TransferMoneyOwnedComponent implements OnInit {
       .transferFundsOwned(this.transferForm.value)
       .subscribe(
         (resp) => {
-          console.log("are we getting here");
-          //if (this.currentUser.emailToggle && this.transferForm.value >= this.currentUser.emailValue) {
+          console.log(this.transferForm.value);
+          if (this.currentUser.emailToggle && this.transferForm.value.transferAmount >= this.currentUser.emailValue) {
             let subject = this.emailService.createEmailSubject(this.transferForm.value);
             let body = this.emailService.createEmailBody(this.transferForm.value);
             let email = {
-              "userEmail": "nrblichf@mtu.edu",
+              "userEmail": this.currentUser.email,
               "emailSubject": subject,
               "emailBody": body
             };
@@ -63,7 +62,7 @@ export class TransferMoneyOwnedComponent implements OnInit {
             console.log(email);
 
             this.emailService.sendEmailBasic(email);
-          //}
+          }
           this.success();
           this.router.navigate(['/feed']);
         },
