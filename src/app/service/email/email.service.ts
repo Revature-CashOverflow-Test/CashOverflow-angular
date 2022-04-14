@@ -10,6 +10,16 @@ export class EmailService {
 
   constructor(private httpClient:HttpClient, private cookieServ: CookieService) { }
 
+  saveEmailToggle( toggleEmail){
+    const headers= new HttpHeaders()
+    .set('content-type', 'application/json')
+    .set('Access-Control-Allow-Origin', `${environment.apiURL}/setemail`)
+    .set('Authorization', `${this.cookieServ.get('token')}`);
+    let options = { headers: headers };
+
+    return this.httpClient.post(`${environment.apiURL}/toggleemail`, toggleEmail, options)
+  }
+
   sendEmailBasic(email){
     const headers= new HttpHeaders()
     .set('content-type', 'application/json')
@@ -22,7 +32,7 @@ export class EmailService {
 
   createEmailSubject(form){
 
-    return `Transfer of mooney to account ${form.transferToAccount}`
+    return `Transfer of money to account ${form.transferToAccount}`
 
   }
 

@@ -1,0 +1,26 @@
+<div class="d-flex align-items-center h-100 gradient-custom-3">
+  <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+              <div class="card" style="border-radius: 15px;">
+                  <div class="card-body p-5">
+                      <h3 class="text-center mb-5">Email Notifications</h3>
+                      <form [formGroup]="changeEmailForm" (ngSubmit)="saveSettings()">
+                          <div class="mb-3 form-check form-switch" >
+                              <label for="toggle-switch" class="form-label" data-toggle="toggle">Send A Notification Email</label>
+                              <input type="checkbox" class="form-check-input" formControlName="emailToggle" role="switch" name="checkbox" (click)="toggleEle()">
+                          </div>
+                          <div class="mb-3">
+                              <label for="new-amount" class="form-label">Amount Threshold</label>
+                              <input type="number"  placeholder="0" formControlName="newAmount" class="form-control"  min="0">
+                          </div>
+                          <div class="d-flex justify-content-center">
+                              <input type="submit" class="btn btn-primary" value="Save Settings">
+                          </div>
+                          <p class="error-message">{{errorMessage}}</p>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
