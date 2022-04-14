@@ -22,7 +22,6 @@ export class TransferMoneyOwnedComponent implements OnInit {
     username: '',
     firstName: '',
     lastName: '',
-    password: '',
     creationDate: '',
     emailToggle: false,
     emailValue: 0
@@ -49,15 +48,21 @@ export class TransferMoneyOwnedComponent implements OnInit {
       .transferFundsOwned(this.transferForm.value)
       .subscribe(
         (resp) => {
-
-          if (this.currentUser.emailToggle && this.transferForm.value >= this.currentUser.emailValue) {
+          console.log(this.transferForm.value);
+          if (this.currentUser.emailToggle && this.transferForm.value.transferAmount >= this.currentUser.emailValue) {
             let subject = this.emailService.createEmailSubject(this.transferForm.value);
             let body = this.emailService.createEmailBody(this.transferForm.value);
+            let email = {
+              "userEmail": this.currentUser.email,
+              "emailSubject": subject,
+              "emailBody": body
+            };
 
-            let email = (this.currentUser.email, subject, body);
+            console.log(this.currentUser);
+            console.log(email);
 
             this.emailService.sendEmailBasic(email);
-        }
+          }
           this.success();
           this.router.navigate(['/feed']);
         },
@@ -70,6 +75,10 @@ export class TransferMoneyOwnedComponent implements OnInit {
 
   ngOnInit(): void {
     this.bankAccounts = this.bankAccountService.getBankAccounts();
+
+    console.log(this.bankAccounts.length);
+    console.log(this.bankAccounts[0]);
+
     if (this.bankAccounts.length != 0 && this.bankAccounts[0].user) {
       this.currentUser = this.bankAccounts[0].user;
     }

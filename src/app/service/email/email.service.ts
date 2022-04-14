@@ -27,7 +27,10 @@ export class EmailService {
     .set('Authorization', `${this.cookieServ.get('token')}`);
     let options = { headers: headers };
 
-    this.httpClient.post(`${environment.apiURL}/sendemail`, email, options)
+    console.log("inside emailServices");
+    console.log(email);
+
+    this.httpClient.post(`${environment.apiURL}/sendemail`, email, options).subscribe(resp => console.log("request was sent successfullly"), error => console.log("request fail"))
   }
 
   createEmailSubject(form){
