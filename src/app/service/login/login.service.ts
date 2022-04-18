@@ -15,6 +15,8 @@ export class LoginService {
     loginPassword: any,
     auth0User: boolean
   ): Observable<JwtDto> {
+    console.log('loging  in services');
+
     const loginUrl = `${environment.apiURL}/login`;
     let httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',

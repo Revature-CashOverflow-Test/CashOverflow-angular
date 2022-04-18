@@ -13,6 +13,8 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.auth.logout({ returnTo: document.location.origin })
+    sessionStorage.setItem('username', '');
+    sessionStorage.setItem('password', '');
     this.cookieServ.delete('token', '/');
     this.router.navigate(['/login']);
   }
