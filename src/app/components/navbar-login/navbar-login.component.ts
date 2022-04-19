@@ -7,14 +7,14 @@ import { AuthService } from '@auth0/auth0-angular';
   templateUrl: './navbar-login.component.html',
   styleUrls: ['./navbar-login.component.css']
 })
-export class NavbarLoginComponent{
+export class NavbarLoginComponent {
 
   constructor(public auth: AuthService) { }
 
   darkmodeOn = false;
-  iconActive = `../../../assets/img/dollar-coin-stack-svgrepo-com.svg`;
-  iconlight = `../../../assets/img/dollar-coin-stack-svgrepo-com.svg`;
-  icondark = `../../../assets/img/dollar-coin-stack-svgrepo-com-gray.svg`;
+  iconActive = `../../../assets/img/dollar-coin-stack-svgrepo-com-blue.svg`;
+  iconlight = `../../../assets/img/dollar-coin-stack-svgrepo-com-blue.svg`;
+  icondark = `../../../assets/img/dollar-coin-stack-svgrepo-com-blue.svg`;
 
   toggleDarkTheme(): void {
     document.body.classList.toggle('dark-theme');
@@ -27,5 +27,5 @@ export class NavbarLoginComponent{
     if (this.darkmodeOn) {
       this.iconActive = this.icondark;
     }
- }
+  }
 }

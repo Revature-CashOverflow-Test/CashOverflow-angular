@@ -1,12 +1,22 @@
-<nav class="navbar navbar-expand-lg"> <!--navbar-light bg-light-->
+<nav class="navbar navbar-expand-lg">
+    <!--navbar-light bg-light-->
     <div class="container-fluid">
-        <a routerLink="/feed" class="navbar-brand"><img [src]= "iconActive" class="navbar-brand" height="40" alt="Stack of coins">CashOverflow</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <a routerLink="/feed" class="navbar-brand"><img [src]="iconActive" class="navbar-brand" height="40"
+                alt="Stack of coins">CashOverflow</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 30 30" width="30" height="30" focusable="false">
+                    <title>Menu</title>
+                    <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10"
+                        d="M4 7h22M4 15h22M4 23h22" />
+                </svg>
+
+            </span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0 ml-auto">
-               <li class="nav-item">
+                <li class="nav-item">
                     <button (click)="toggleDarkTheme()">Dark Mode</button>
                 </li>
                 <li class="nav-item active">
@@ -16,19 +26,19 @@
                     <a class="nav-link" routerLink="/createBankAccountForm">Create Bank Account</a>
                 </li>
                 <li class="nav-item">
-                  <div class="dropdown">
-                      <a class="nav-link">Transfer Money</a>
-                      <div class="dropdown-content">
-                          <a class="nav-link" routerLink="/transferMoneyBankAccount">Between Accounts</a>
-                          <a class="nav-link" routerLink="/transferMoneyBetweenUsers">With Other Users</a>
-                      </div>
-                  </div>
-              </li>
+                    <div class="dropdown">
+                        <a class="nav-link">Transfer Money</a>
+                        <div class="dropdown-content">
+                            <a class="nav-link" routerLink="/transferMoneyBankAccount">Between Accounts</a>
+                            <a class="nav-link" routerLink="/transferMoneyBetweenUsers">With Other Users</a>
+                        </div>
+                    </div>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/manageBankAccountBalance">Manage Account Balance</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" routerLink="/settings">Settings</a>
+                    <a class="nav-link" routerLink="/settings">Settings</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/logout">Logout</a>
