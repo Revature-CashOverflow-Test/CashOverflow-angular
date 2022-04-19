@@ -1,6 +1,5 @@
 import { EmailService } from './../../service/email/email.service';
 import { UserAccount } from './../../model/user-account';
-import { Component, OnInit, Optional } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { BankAccount } from '../../model/bank-account';
@@ -47,7 +46,7 @@ export class TransferMoneyOwnedComponent implements OnInit {
     this.bankAccountService
       .transferFundsOwned(this.transferForm.value)
       .subscribe(
-        (resp) => {
+        (_resp) => {
           if (this.currentUser.emailToggle && this.transferForm.value.transferAmount >= this.currentUser.emailValue) {
             let subject = this.emailService.createEmailSubject(this.transferForm.value);
             let body = this.emailService.createEmailBody(this.transferForm.value);
@@ -60,7 +59,7 @@ export class TransferMoneyOwnedComponent implements OnInit {
             console.log(this.currentUser);
             console.log(email);
 
-            this.emailService.sendEmailBasic(email).subscribe(response => console.log("email sent!"), error => console.log("email failed to send"));
+            this.emailService.sendEmailBasic(email).subscribe(_response => console.log("email sent!"), _error => console.log("email failed to send"));
           }
           this.success();
           this.router.navigate(['/feed']);
