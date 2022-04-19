@@ -1,4 +1,4 @@
-<div class="container h-100">
+<div class="container">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
             <div class="card" style="border-radius: 15px;">
@@ -17,7 +17,8 @@
                         <div form="form-outline mb-4">
                             <label for="accounts">Accounts</label>
 
-                            <select [(ngModel)]="formAccountId" id="accounts" class="form-select" aria-label="Choose a transaction type" required>
+                            <select [(ngModel)]="formAccountId" id="accounts" class="form-select"
+                                aria-label="Choose a transaction type" required>
                                 <option selected disabled>Select an account for a transaction</option>
                                 <option *ngFor="let account of accounts" [ngValue]="account.id">{{account.name}} {{"$" +
                                     account.balance}}
@@ -27,7 +28,8 @@
                         </div>
                         <div form="form-outline mb-4">
                             <label for="type">Type</label>
-                            <select [(ngModel)]="formTransactionType" id="type" type="number" class="form-select" aria-label="Choose a transaction type" required>
+                            <select [(ngModel)]="formTransactionType" id="type" type="number" class="form-select"
+                                aria-label="Choose a transaction type" required>
                                 <option selected disabled>Choose a transaction type</option>
                                 <option [ngValue]=2>Income</option>
                                 <option [ngValue]=1>Expense</option>
@@ -35,13 +37,15 @@
                         </div>
                         <div form="form-outline mb-4">
                             <label for="amount">Amount</label>
-                            <input [(ngModel)]="formAmount" class="form-control" id="amount" type="number" step="0.01" min="0.01" required>
+                            <input [(ngModel)]="formAmount" class="form-control" id="amount" type="number" step="0.01"
+                                min="0.01" required>
                         </div>
                         <div form="form-outline mb-4">
                             <label for="exampleFormControlTextarea1">Description</label>
-                            <textarea [(ngModel)]="formDescription" class="form-control" id="exampleFormControlTextarea1" rows="2" required></textarea>
+                            <textarea [(ngModel)]="formDescription" class="form-control"
+                                id="exampleFormControlTextarea1" rows="2" required></textarea>
                         </div>
-                        <br/>
+                        <br />
                         <div class="d-flex justify-content-center">
 
                             <button (click)="transaction()" class="btn btn-primary">Create
