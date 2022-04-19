@@ -1,5 +1,4 @@
 import { Component} from '@angular/core';
-import { NavbarLoginComponent } from './../navbar-login/navbar-login.component';
 
 @Component({
   selector: 'app-navbar-general',

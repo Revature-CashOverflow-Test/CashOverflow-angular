@@ -1,8 +1,6 @@
 import { Component} from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from '@auth0/auth0-angular';
 import { ToastrService } from 'ngx-toastr';
-import { Social } from 'src/app/model/social';
 import { AddSocialService } from 'src/app/service/addSocial/add-social.service';
 
 @Component({
@@ -24,7 +22,6 @@ export class LinkAccountComponent {
   errorMessage: string = '';
 
   loginWithAuth() {
-    //this.auth.logout({ localOnly: true });
 
     let username = sessionStorage.getItem('username');
     console.log(username);

@@ -6,7 +6,6 @@ import { JwtDto } from 'src/app/model/jwt';
 import { Router } from '@angular/router';
 import { AuthClientConfig, AuthService } from '@auth0/auth0-angular';
 import { ToastrService } from 'ngx-toastr';
-import { ApiService } from 'src/app/api.service';
 import { RegisterService } from 'src/app/service/register/register.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -47,7 +46,6 @@ export class LoginComponent implements OnInit {
     private cookieServ: CookieService,
     private router: Router,
     public auth: AuthService,
-    private api: ApiService,
     private toastr: ToastrService,
     private configFactory: AuthClientConfig,
     private regServ: RegisterService
