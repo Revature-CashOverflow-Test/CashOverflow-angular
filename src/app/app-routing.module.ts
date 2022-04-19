@@ -10,6 +10,7 @@ import { BankAccountPageComponent } from './page-layouts/bank-account-page/bank-
 import { BankAccountMoneyTransferComponent } from './page-layouts/bank-account-money-transfer/bank-account-money-transfer.component';
 import { ManageAccountBalanceComponent } from './page-layouts/manage-account-balance/manage-account-balance.component';
 import { SettingsComponent } from './page-layouts/settings/settings.component';
+import { BankAccountUserTransferComponent } from './page-layouts/bank-account-user-transfer/bank-account-user-transfer.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterPageComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'settings', component: SettingsComponent},
+  { path: 'transferMoneyBetweenUsers', component: BankAccountUserTransferComponent, canActivate: [CanActivateRouteGuard]},
   { path: '**', redirectTo: '/feed' }
 ];
 

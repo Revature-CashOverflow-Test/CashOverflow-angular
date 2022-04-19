@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-bank-account-page',
   templateUrl: './bank-account-page.component.html'
 })
-export class BankAccountPageComponent implements OnInit {
+export class BankAccountPageComponent {
 
-  constructor() { }
+  constructor() {
+    //not Needed?
+   }
 
-  ngOnInit(): void {
-  }
+
 
 }

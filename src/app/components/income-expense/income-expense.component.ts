@@ -62,7 +62,7 @@ export class IncomeExpenseComponent implements OnInit {
 
 
     this.bankServ.sendTransactionData(this.newTransaction).subscribe(
-      (data) => {
+      (_data) => {
         document.getElementById('amount')?.classList.remove('is-invalid');
         this.transactionSuccess = 1;
         this.success();

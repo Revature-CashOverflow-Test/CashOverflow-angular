@@ -12,8 +12,11 @@ export class LoginService {
 
   retreiveLoginUser(
     loginUsername: any,
-    loginPassword: any
+    loginPassword: any,
+    auth0User: boolean
   ): Observable<JwtDto> {
+    console.log('loging  in services');
+
     const loginUrl = `${environment.apiURL}/login`;
     let httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -21,8 +24,8 @@ export class LoginService {
     let user = {
       username: loginUsername,
       password: loginPassword,
+      auth0User: auth0User,
     };
-
     return this.httpCli.post<JwtDto>(loginUrl, user, { headers: httpHeaders });
   }
 }

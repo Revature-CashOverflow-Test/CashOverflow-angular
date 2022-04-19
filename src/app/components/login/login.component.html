@@ -5,13 +5,14 @@
                 <div class="card" style="border-radius: 15px;">
                     <div class="card-body p-5">
                         <h3 class="text-center mb-5">Welcome!</h3>
-                        <form [formGroup]="formdata" (ngSubmit)="onClickSubmit(formdata.value)">
+                        <form [formGroup]="formdata" (ngSubmit)="loggedInWithAuth0=false; onClickSubmit(formdata.value)">
                             <div *ngIf="showErrorMessage">
                                 <p style="color: red;">Invalid credentials. Please try again.</p>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Username</label>
-                                <input type="text" name="loginUsername" placeholder="Username" formControlName="loginUsername" class="form-control" id="exampleInputEmail1">
+                                <input type="text" id="usernameField" name="loginUsername" placeholder="Username" formControlName="loginUsername"
+                                  class="form-control" id="exampleInputEmail1">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label">Password</label>
@@ -19,8 +20,17 @@
                             </div>
                             <div class="d-flex justify-content-center">
                                 <input type="submit" class="btn btn-primary" value="Log In">
+
                             </div>
                         </form>
+                        <div class="d-flex justify-content-center">
+                          <br>
+                          <p>OR</p>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                          <button (click)="loginWithAuth()" class="btn btn-primary">Log In with Auth0</button>
+
+                        </div>
                     </div>
                 </div>
             </div>

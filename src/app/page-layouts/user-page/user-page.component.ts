@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html'
 })
-export class UserPageComponent implements OnInit {
+export class UserPageComponent   {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  constructor() {
+    //Can we just ban this from being a code smell?
+   }
 
 }

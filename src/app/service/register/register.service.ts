@@ -13,11 +13,16 @@ export class RegisterService {
    * @author Cameron, Amir, Chandra
    */
   sendRegisterData(registerForm) {
+    console.log("Sending regristartion");
 
     const headers= new HttpHeaders()
     .set('content-type', 'application/json')
     .set('Access-Control-Allow-Origin', `${environment.apiURL}/register`);
      let options = { headers: headers };
+
+    console.log(registerForm);
+    console.log(options);
+
 
     return this.http.post(`${environment.apiURL}/register`, registerForm, options)
 

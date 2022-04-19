@@ -5,8 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FeedComponent } from './components/feed/feed.component';
@@ -30,8 +28,18 @@ import { BankAccountInfoComponent } from './components/bank-account-info/bank-ac
 import { BankAccountMoneyTransferComponent } from './page-layouts/bank-account-money-transfer/bank-account-money-transfer.component';
 import { ManageAccountBalanceComponent } from './page-layouts/manage-account-balance/manage-account-balance.component';
 import { TransactionListComponent } from './components/transaction-list/transaction-list.component';
+import { AuthModule } from '@auth0/auth0-angular';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
-import { SettingsComponent } from './page-layouts/settings/settings.component'
+import { SettingsComponent } from './page-layouts/settings/settings.component';
+import { environment as env}  from 'src/environments/environment';
+import { ChangeFirstNameComponent } from './components/change-first-name/change-first-name.component';
+import { ChangeLastNameComponent } from './components/change-last-name/change-last-name.component';
+import { ChangeEmailComponent } from './components/change-email/change-email.component';
+import { LinkAccountComponent } from './components/link-account/link-account.component';
+import { TransferMoneyBetweenUsersComponent } from './components/transfer-money-between-users/transfer-money-between-users.component';
+import { BankAccountUserTransferComponent } from './page-layouts/bank-account-user-transfer/bank-account-user-transfer.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +62,13 @@ import { SettingsComponent } from './page-layouts/settings/settings.component'
     BankAccountMoneyTransferComponent,
     ManageAccountBalanceComponent,
     TransactionListComponent,
-    SettingsComponent
+    SettingsComponent,
+    ChangeFirstNameComponent,
+    ChangeLastNameComponent,
+    ChangeEmailComponent,
+    LinkAccountComponent,
+    TransferMoneyBetweenUsersComponent,
+    BankAccountUserTransferComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +78,9 @@ import { SettingsComponent } from './page-layouts/settings/settings.component'
     HttpClientModule,
     FormsModule,
     JwtModule,
+    AuthModule.forRoot({
+      ...env.auth
+    }),
     BrowserAnimationsModule,
     ToastrModule.forRoot()
 

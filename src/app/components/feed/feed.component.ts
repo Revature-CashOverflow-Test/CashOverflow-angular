@@ -13,7 +13,7 @@ export class FeedComponent implements OnInit {
 
   cardBackG= ['l-bg-white-gray','l-bg-cherry ','l-bg-orange-dark','l-bg-cyan'];
   constructor(private bankAccountService: BankAccountService, private router: Router) {
-    
+
   }
 
   /**
