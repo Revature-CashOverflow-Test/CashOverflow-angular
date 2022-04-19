@@ -26,11 +26,10 @@ export class EmailToggleComponent implements OnInit {
   }
 
   saveSettings(){
-    let toggleEmail = (this.emailDisabled, this.changeEmailForm.controls['newAmount'].value)
-    this.emailService.saveEmailToggle(toggleEmail).subscribe(
+    this.emailService.saveEmailSettings(this.changeEmailForm.controls['emailToggle'].value, this.changeEmailForm.controls['newAmount'].value).subscribe(
       (data) => {
         if(data){
-          this.toastr.success('You have successfully changed your password. Please log back in with your new password.', `Password Changed!`);
+          this.toastr.success('You have successfully changed your email settigns', `Email Settings Changed!`);
         }
       },
       (error: HttpErrorResponse) => {

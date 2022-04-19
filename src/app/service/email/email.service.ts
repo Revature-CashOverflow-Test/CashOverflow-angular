@@ -10,14 +10,19 @@ export class EmailService {
 
   constructor(private httpClient:HttpClient, private cookieServ: CookieService) { }
 
-  saveEmailToggle( toggleEmail){
+  saveEmailSettings(emailToggle: boolean, emailValue: number){
     const headers= new HttpHeaders()
     .set('content-type', 'application/json')
-    .set('Access-Control-Allow-Origin', `${environment.apiURL}/setemail`)
+    .set('Access-Control-Allow-Origin', `${environment.apiURL}/changeEmailSettings`)
     .set('Authorization', `${this.cookieServ.get('token')}`);
     let options = { headers: headers };
 
-    return this.httpClient.post(`${environment.apiURL}/toggleemail`, toggleEmail, options)
+    let emailSettings = {
+      "emailToggle": emailToggle,
+      "emailValue": emailValue
+    }
+
+    return this.httpClient.put(`${environment.apiURL}/changeEmailSettings`, emailSettings, options)
   }
 
   sendEmailBasic(email){
@@ -27,21 +32,18 @@ export class EmailService {
     .set('Authorization', `${this.cookieServ.get('token')}`);
     let options = { headers: headers };
 
-    console.log("inside emailServices");
-    console.log(email);
-
-    this.httpClient.post(`${environment.apiURL}/sendemail`, email, options).subscribe(resp => console.log("request was sent successfullly"), error => console.log("request fail"))
+    return this.httpClient.post(`${environment.apiURL}/sendemail`, email, options);
   }
 
-  createEmailSubject(form){
+  createEmailSubject(form) {
 
     return `Transfer of money to account ${form.transferToAccount}`
 
   }
 
-  createEmailBody(form){
+  createEmailBody(form) {
 
-    return `The ammount ${form.transferAmount} has been transfered from account number ${form.transferFromAccount} to the account number ${form.transferToAccount} \n\n Thank you For using CashOverflow.`
+    return `$${form.transferAmount} has just been transfered from bank account ${form.transferFromAccount} to the bank account ${form.transferToAccount}. \n\n Thank you for using CashOverflow.`
 
   }
 }

@@ -43,12 +43,10 @@ export class TransferMoneyOwnedComponent implements OnInit {
   ) {}
 
   onSubmit() {
-    console.log(this.transferForm.value);
     this.bankAccountService
       .transferFundsOwned(this.transferForm.value)
       .subscribe(
         (resp) => {
-          console.log(this.transferForm.value);
           if (this.currentUser.emailToggle && this.transferForm.value.transferAmount >= this.currentUser.emailValue) {
             let subject = this.emailService.createEmailSubject(this.transferForm.value);
             let body = this.emailService.createEmailBody(this.transferForm.value);
@@ -61,7 +59,7 @@ export class TransferMoneyOwnedComponent implements OnInit {
             console.log(this.currentUser);
             console.log(email);
 
-            this.emailService.sendEmailBasic(email);
+            this.emailService.sendEmailBasic(email).subscribe(response => console.log("email sent!"), error => console.log("email failed to send"));
           }
           this.success();
           this.router.navigate(['/feed']);
