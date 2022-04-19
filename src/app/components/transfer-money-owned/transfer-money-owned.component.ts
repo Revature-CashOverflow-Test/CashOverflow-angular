@@ -1,6 +1,7 @@
 import { EmailService } from './../../service/email/email.service';
 import { UserAccount } from './../../model/user-account';
 import { Component, OnInit, Optional } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { BankAccount } from '../../model/bank-account';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -64,7 +65,7 @@ export class TransferMoneyOwnedComponent implements OnInit {
           this.success();
           this.router.navigate(['/feed']);
         },
-        (msg) => {
+        (_msg) => {
           this.error();
           this.showErrorMessage = true;
         }

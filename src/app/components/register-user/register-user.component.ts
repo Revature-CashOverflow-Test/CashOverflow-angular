@@ -1,9 +1,11 @@
 import { ToastrService } from 'ngx-toastr';
-import { Component, OnInit, ɵNOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Component } from '@angular/core';
+import {  HttpErrorResponse } from '@angular/common/http';
+import {  FormControl, FormGroup } from '@angular/forms';
 import { RegisterService } from '../../service/register/register.service';
 import { Observable, ObservedValueOf } from 'rxjs';
+import { Router } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
 
 
 /**
@@ -17,10 +19,11 @@ import { Observable, ObservedValueOf } from 'rxjs';
   styleUrls: ['./register-user.component.css'],
 })
 
-export class RegisterUserComponent implements OnInit {
+export class RegisterUserComponent{
   regSuccess: number = 0;
   password: string = '';
   password2: string = '';
+  // profileJson: string = "";
 
   registerForm = new FormGroup({
     username: new FormControl(''),
@@ -28,11 +31,12 @@ export class RegisterUserComponent implements OnInit {
     firstName: new FormControl(''),
     lastName: new FormControl(''),
     email: new FormControl(''),
+    auth0User: new FormControl(false),
   });
 
-  constructor(private regServ: RegisterService, private toastr: ToastrService) {}
+  constructor(private regServ: RegisterService, private toastr: ToastrService, private router: Router, private auth: AuthService) {}
+  
 
-  ngOnInit(): void {}
 
   /**
    * Logic checks for password mismatch then calls the service method to send form data to the Java backend.
@@ -52,17 +56,20 @@ export class RegisterUserComponent implements OnInit {
 
 
     for(let item in this.registerForm){
-      if(item){
+      if (item) {
+        //Needed for some reason?
+        //Breaks without this
       }
     }
 
 
     this.regServ.sendRegisterData(this.registerForm.value).subscribe(
-      (data) => {
+      (_data) => {
         this.regSuccess = 1;
         this.success();
+
       },
-      (error: HttpErrorResponse) => {
+      (_error: HttpErrorResponse) => {
         this.regSuccess = 2;
         this.error();
       }
@@ -71,6 +78,8 @@ export class RegisterUserComponent implements OnInit {
 
   success(): void {
     this.toastr.success('Registration Success!', `You have been successfully registered`);
+    this.router.navigateByUrl('/login');
+
   }
 
   passwordMatchError(): void {

@@ -2,4 +2,41 @@ body {
     background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');
     background-repeat: no-repeat;
     background-attachment: fixed;
+    --text-color: #222;
+  --bkg-color: #fff;
+  --btn-txt-color: white;
+  --btn-bg-color: rgb(11, 88, 160);
 }
+
+body.dark-theme {
+  background-image: url('https://graef-usa.com/wp-content/uploads/Projects/Milwaukee%20Art%20Museum/Milwaukee%20Art%20Museum%20Addition_Int.%20w%20People_01.jpg');
+  --text-color: #eee;
+  --bkg-color: #252222;
+  --btn-txt-color: rgb(46, 43, 43);
+  --btn-bg-color: rgb(20, 211, 195);
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 2px;
+  color: var(--btn-txt-color);
+  background-color: var(--btn-bg-color);
+}
+
+nav {
+  background-color: var(--bkg-color);
+  color: var(--text-color);
+}
+
+.card {
+  background-color: var(--bkg-color);
+  color: var(--text-color);
+}
+
+.toast-top-right {
+  right: 12px;
+  top: 75px !important;
+}
+
+html, body { height: 100%; margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;  }

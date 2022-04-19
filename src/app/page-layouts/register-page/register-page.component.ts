@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-register-page',
   templateUrl: './register-page.component.html'
 })
-export class RegisterPageComponent implements OnInit {
+export class RegisterPageComponent  {
 
-  constructor() { }
+  constructor() {
+    //Why is this a code smell?
+   }
 
-  ngOnInit(): void {
-  }
 
 }

@@ -1,0 +1,90 @@
+<div *ngIf="bankAccounts.length >= 1" class="formBox">
+  <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+              <div class="card" style="border-radius: 15px;">
+                  <div class="card-body p-5">
+                      <h3 class="text-center mb-5">Send or Request Money with User</h3>
+                      <form ngNativeValidate [formGroup]="transferForm" class="form-group" (ngSubmit)="onSubmit()">
+                          <div *ngIf="showErrorMessage">
+                              <p style="color: red;">Not enough funds. Check your balance.</p>
+                          </div>
+
+                          <label for="sendReceive">Send/Request</label>
+                          <select class="form-select" id="sendreceive" formControlName="sendOrReceive" required>
+                            <option value="1">Send</option>
+                            <option value="2">Request</option>
+                          </select>
+
+                          <label for="user">Username</label>
+                          <input formControlName="user" class="form-control" id="user" name="userField" placeholder="Enter the User you want to transact with" required>
+
+                          <label for="account2">From/To</label>
+                          <select class="form-select" id="account2" formControlName="transferAccount" required>
+                              <option *ngFor="let account2 of bankAccounts" [value]="account2.id">{{account2.name}} {{"$" +
+                                  account2.balance}}</option>
+                          </select>
+
+                          <label for="amount">Amount: </label><br/>
+                          <input id="amount" class="form-control" type="number" min="0" step="any" formControlName="transferAmount" required/>
+                          <br/>
+                          <div class="d-flex justify-content-center">
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div *ngIf="requests.length >= 1" class="formBox">
+  <div *ngFor="let request of requests" class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+              <div class="card" style="border-radius: 15px;">
+                  <div class="card-body p-5">
+                     <h3 *ngIf="request.sendOrReceive == 1" class="text-center mb-5">{{request.originUser}} sent ${{request.transferAmount}}</h3>
+                     <h3 *ngIf="request.sendOrReceive == 2" class="text-center mb-5">{{request.originUser}} requests ${{request.transferAmount}}</h3>
+                      <form ngNativeValidate [formGroup]="requestForm" class="form-group" (ngSubmit)="userSubmit(request)">
+                          <div *ngIf="showErrorMessage">
+                              <p style="color: red;">Not enough funds. Check your balance.</p>
+                          </div>
+
+                          <label *ngIf="request.sendOrReceive == 1" for="account">Which account would you like to deposit to? </label>
+                          <label *ngIf="request.sendOrReceive == 2" for="account">Which account would you like to withdraw from? </label>
+                          <select class="form-select" id="account" formControlName="receiveAccount" required>
+                            <option *ngFor="let account1 of bankAccounts" [value]="account1.id">{{account1.name}} {{"$" +
+                              account1.balance}}</option>
+                          </select>
+
+                          <br/>
+                          <div class="d-flex justify-content-center">
+                              <button type="submit" class="btn btn-primary">Accept</button>
+                          </div>
+                      </form>
+                      <br>
+                      <div class="d-flex justify-content-center">
+                        <button type="deny" style="background-color: red" (click)="deny(request)" class="btn btn-primary">Deny</button>
+                      </div>
+                      
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div *ngIf="bankAccounts.length < 1" class="formBox">
+  <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+              <div class="card" style="border-radius: 15px;">
+                  <div class="card-body p-5">
+                      <h3 class="text-center mb-5">Add more accounts to use this feature.</h3>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+

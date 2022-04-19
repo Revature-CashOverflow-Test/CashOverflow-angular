@@ -1,5 +1,5 @@
 import { ToastrService } from 'ngx-toastr';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BankAccountService } from 'src/app/service/bankAccount/bank-account.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './create-bank-account-form.component.html',
   styleUrls: ['./create-bank-account-form.component.css'],
 })
-export class CreateBankAccountFormComponent implements OnInit {
+export class CreateBankAccountFormComponent{
 
   bankAccount = {
     name: 'asdff',
@@ -31,7 +31,6 @@ export class CreateBankAccountFormComponent implements OnInit {
     private toastr: ToastrService
   ) {}
 
-  ngOnInit(): void {}
 
   /**
    * This method populate our bankAccount object to be sent
@@ -43,7 +42,7 @@ export class CreateBankAccountFormComponent implements OnInit {
     this.bankAccount.accountTypeId = data.formAccountType;
 
     this.bankAccountService.setUserBankAccounts(this.bankAccount).subscribe(
-      (resp) => {
+      (_resp) => {
         this.success();
         this.router.navigate(['/feed'])
       }

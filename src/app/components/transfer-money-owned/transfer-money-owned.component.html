@@ -17,7 +17,7 @@
 
                             <label for="account2">To: </label>
                             <select class="form-select" id="account2" formControlName="transferToAccount" required>
-                                <option *ngFor="let account2 of bankAccounts" [value]="account2.name">{{account2.name}} {{"$" +
+                                <option *ngFor="let account2 of bankAccounts" [value]="account2.name"> {{account2.name}} {{"$" +
                                     account2.balance}}</option>
                             </select>
 

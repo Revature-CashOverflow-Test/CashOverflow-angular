@@ -1,11 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg"> <!--navbar-light bg-light-->
     <div class="container-fluid">
-        <a routerLink="/feed" class="navbar-brand"><img src="../../../assets/img/dollar-coin-stack-svgrepo-com.svg" class="navbar-brand" height="40" alt="Stack of coins">CashOverflow</a>
+        <a routerLink="/feed" class="navbar-brand"><img [src]= "iconActive" class="navbar-brand" height="40" alt="Stack of coins">CashOverflow</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0 ml-auto">
+               <li class="nav-item">
+                    <button (click)="toggleDarkTheme()">Dark Mode</button>
+                </li>
                 <li class="nav-item active">
                     <a class="nav-link" routerLink="/feed">My Account</a>
                 </li>
@@ -13,8 +16,14 @@
                     <a class="nav-link" routerLink="/createBankAccountForm">Create Bank Account</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/transferMoneyBankAccount">Transfer Money Between Accounts</a>
-                </li>
+                  <div class="dropdown">
+                      <a class="nav-link">Transfer Money</a>
+                      <div class="dropdown-content">
+                          <a class="nav-link" routerLink="/transferMoneyBankAccount">Between Accounts</a>
+                          <a class="nav-link" routerLink="/transferMoneyBetweenUsers">With Other Users</a>
+                      </div>
+                  </div>
+              </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/manageBankAccountBalance">Manage Account Balance</a>
                 </li>

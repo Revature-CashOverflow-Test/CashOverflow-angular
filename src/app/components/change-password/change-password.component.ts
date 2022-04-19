@@ -41,69 +41,7 @@ export class ChangePasswordComponent implements OnInit {
     let password = sessionStorage.getItem('password')
     let username = sessionStorage.getItem('username')
 
-    if(this.changePasswordForm.controls['currentPassword'].value == password){
-
-      if(this.changePasswordForm.controls['newPassword'].value == this.changePasswordForm.controls['retypePassword'].value){
-
-        let newPassword = this.changePasswordForm.controls['newPassword'].value
-
-        if(newPassword.length > 7){
-
-          for(let i in newPassword){
-
-            var specialCharactersPattern = /^[!@#\$%\^\&*\)\(+=._-]$/g
-            if(specialCharactersPattern.test(newPassword[i])){
-              this.numberOfSpecialCharacter++
-              if(this.numberOfSpecialCharacter >= 2){
-                this.specialValid = true
-              }
-            }
-
-            var numberPattern = /^[0-9]$/g
-            if(numberPattern.test(newPassword[i])){
-              this.numberOfNumbers++
-              if(this.numberOfNumbers >= 2){
-                this.numberValid = true
-              }
-            }
-
-            var numberPattern = /^[A-Z]$/g
-            if(numberPattern.test(newPassword[i])){
-              this.numberOfCapitalCharacters++
-              if(this.numberOfCapitalCharacters >= 2){
-                this.capitalCharactersValid = true
-              }
-            }
-
-          }
-
-          if(this.specialValid && this.numberValid && this.capitalCharactersValid){
-            this.errorMessage = ''
-            this.changePassServ.sendPasswordData(username, newPassword).subscribe(
-              (data) => {
-                if(data){
-                  this.toastr.success('You have successfully changed your password. Please log back in with your new password.', `Password Changed!`);
-                  this.cookieServ.delete('token', '/');
-                  this.router.navigate(['/login']);
-                }
-              },
-              (error: HttpErrorResponse) => {
-                console.log(error)
-              }
-            )
-          }else{
-            this.errorMessage = 'The new password must contain at least two special characters, Two numbers and two capital characters.'
-          }
-
-        }else{
-          this.errorMessage = 'The password must be at least 8 characters long.'
-        }
-
-
-      }else{
-        this.errorMessage = 'The passwords do not match.'
-      }
-    }else{
+    if (this.changePasswordForm.controls['currentPassword'].value != password) {
       if(this.numberOfAttempts != 0){
         this.errorMessage = `The current password doesnt match ${this.numberOfAttempts} attempts remaining.`
         this.numberOfAttempts--;
@@ -111,8 +49,66 @@ export class ChangePasswordComponent implements OnInit {
         this.cookieServ.delete('token', '/');
         this.router.navigate(['/login']);
       }
-
+      return;
     }
+    if (this.changePasswordForm.controls['newPassword'].value != this.changePasswordForm.controls['retypePassword'].value) {
+      this.errorMessage = 'The passwords do not match.'
+      return;
+    }
+
+    let newPassword = this.changePasswordForm.controls['newPassword'].value
+
+    if (newPassword.length <= 7) {
+      this.errorMessage = 'The password must be at least 8 characters long.'
+      return;
+    }
+
+    var specialCharactersPattern = /^[!@#\$%\^\&*\)\(+=._-]$/g
+    var numberPattern = /^[0-9]$/g
+    var upperPattern = /^[A-Z]$/g
+    for (let i in newPassword) {
+      if(specialCharactersPattern.test(newPassword[i])){
+        this.numberOfSpecialCharacter++
+      }
+      else if(numberPattern.test(newPassword[i])){
+        this.numberOfNumbers++
+      }
+      else if(upperPattern.test(newPassword[i])){
+        this.numberOfCapitalCharacters++
+      }
+    }
+
+    if(this.numberOfSpecialCharacter >= 2){
+      this.specialValid = true
+    }
+    if(this.numberOfNumbers >= 2){
+      this.numberValid = true
+    }
+    if(this.numberOfCapitalCharacters >= 2){
+      this.capitalCharactersValid = true
+    }
+
+    if (!this.specialValid || !this.numberValid || !this.capitalCharactersValid) {
+      this.errorMessage = 'The new password must contain at least two special characters, Two numbers and two capital characters.'
+      return;
+    }
+
+    this.errorMessage = ''
+    this.changePassServ.sendPasswordData(username, newPassword).subscribe(
+      (data) => {
+        if(data){
+          this.toastr.success('You have successfully changed your password. Please log back in with your new password.', `Password Changed!`);
+          this.cookieServ.delete('token', '/');
+          this.router.navigate(['/login']);
+        }
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error)
+      }
+    )
+
+
+
 
 
   }

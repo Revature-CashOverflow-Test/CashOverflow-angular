@@ -1,0 +1,8 @@
+{
+  "domain": "dev-beazcaxy.us.auth0.com",
+  "clientId": "6Iewy037OUNolNG9Q7oS1pZCIZ6DakAs",
+  "audience": "{API_IDENTIFIER}",
+  "apiUri": "http://localhost:3001",
+  "appUri": "http://localhost:4200",
+  "errorPath": "/error"
+}
