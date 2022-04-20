@@ -13,5 +13,9 @@ nav {
     margin-bottom: 100px;
 }
 
+svg {
+    color: var(--text-color);
+  }
+  
 
 /* -------------------------------------------- */

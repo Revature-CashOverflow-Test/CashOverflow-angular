@@ -28,11 +28,11 @@ export class ChangeEmailComponent {
     this.changeEmailServ.sendEmailData(username, newEmail ).subscribe(
       (data) => {
         if(data){
-          this.toastr.success('You have successfully changed your last name', `Last name Changed!`);
+          this.toastr.success('You have successfully changed your email', `Email Changed!`);
         }
       },
       (error: HttpErrorResponse) => {
-        this.toastr.error('Failure', `Last name unable to be changed!`)
+        this.toastr.error('Failure', `Email unable to be changed!`)
         console.log(error)
       }
     )

@@ -3,17 +3,42 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     --text-color: #222;
-  --bkg-color: #fff;
-  --btn-txt-color: white;
-  --btn-bg-color: rgb(11, 88, 160);
+    --bkg-color: rgba(255, 255, 255, 0.8);
+    --btn-txt-color: white;
+    --btn-bg-color: rgb(11, 88, 160);
 }
 
 body.dark-theme {
-  background-image: url('https://graef-usa.com/wp-content/uploads/Projects/Milwaukee%20Art%20Museum/Milwaukee%20Art%20Museum%20Addition_Int.%20w%20People_01.jpg');
+  background-image:  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
   --text-color: #eee;
-  --bkg-color: #252222;
-  --btn-txt-color: rgb(46, 43, 43);
-  --btn-bg-color: rgb(20, 211, 195);
+  --bkg-color: rgba(0, 0, 0, 0.4); /* added transparancy */
+  --btn-txt-color: rgb(255, 255, 255); /* changed */
+  --btn-bg-color: rgb(20, 211, 195); 
+}
+
+.dark-theme .table, .dark-theme .table-striped  {
+  --bs-table-bg: transparent;
+  --bs-table-accent-bg: transparent;
+  --bs-table-striped-color: #eee;
+  --bs-table-striped-bg: rgba(0, 0, 0, 0.3);
+  --bs-table-active-color: #eee;
+  --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+  --bs-table-hover-color: #eee;
+  --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+}
+
+.dark-theme table, .dark-theme caption, .dark-theme button { 
+  color:var(--btn-txt-color);
+}
+
+.dark-theme li button {
+  padding: 10px;
+  border: none;
+  border-radius: 2px;
+  color: rgb(46, 43, 43);
+  background-color: var(--btn-bg-color);
 }
 
 button {

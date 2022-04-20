@@ -1,34 +1,35 @@
-<div class="d-flex align-items-center h-100 gradient-custom-3">
+<div class="d-flex align-items-centergradient-custom-3">
     <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-9 col-lg-7 col-xl-6">
                 <div class="card" style="border-radius: 15px;">
                     <div class="card-body p-5">
                         <h3 class="text-center mb-5">Welcome!</h3>
-                        <form [formGroup]="formdata" (ngSubmit)="loggedInWithAuth0=false; onClickSubmit(formdata.value)">
+                        <form [formGroup]="formdata"
+                            (ngSubmit)="loggedInWithAuth0=false; onClickSubmit(formdata.value)">
                             <div *ngIf="showErrorMessage">
                                 <p style="color: red;">Invalid credentials. Please try again.</p>
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Username</label>
-                                <input type="text" id="usernameField" name="loginUsername" placeholder="Username" formControlName="loginUsername"
-                                  class="form-control" id="exampleInputEmail1">
+                                <input type="text" id="usernameField" name="loginUsername" placeholder="Username"
+                                    formControlName="loginUsername" class="form-control" id="exampleInputEmail1">
                             </div>
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label">Password</label>
-                                <input type="password" class="fortextbox" name="loginPassword" placeholder="Password" formControlName="loginPassword" class="form-control" id="exampleInputPassword1">
+                                <input type="password" class="fortextbox" name="loginPassword" placeholder="Password"
+                                    formControlName="loginPassword" class="form-control" id="exampleInputPassword1">
                             </div>
                             <div class="d-flex justify-content-center">
                                 <input type="submit" class="btn btn-primary" value="Log In">
 
                             </div>
                         </form>
-                        <div class="d-flex justify-content-center">
-                          <br>
-                          <p>OR</p>
+                        <div class="d-flex justify-content-center mt-3">
+                            <p>OR</p>
                         </div>
                         <div class="d-flex justify-content-center">
-                          <button (click)="loginWithAuth()" class="btn btn-primary">Log In with Auth0</button>
+                            <button (click)="loginWithAuth()" class="btn btn-primary">Log In with Auth0</button>
 
                         </div>
                     </div>

@@ -1,15 +1,15 @@
-<div class="d-flex align-items-center h-100 gradient-custom-3">
+<div class="d-flex align-items-center gradient-custom-3">
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-9 col-lg-7 col-xl-6">
         <div class="card" style="border-radius: 15px;">
           <div class="card-body p-5">
             <h3 class="text-center mb-5">Change Last Name</h3>
-            <form [formGroup]="changeLastNameForm" (ngSubmit)="changeLastName()">
+            <form ngNativeValidate [formGroup]="changeLastNameForm" (ngSubmit)="changeLastName()">
               <div class="mb-3">
                 <label for="newLastName" class="form-label">New Last Name</label>
                 <input type="text" class="fortextbox" name="newLastName" placeholder="New Last Name"
-                  formControlName="newLastName" class="form-control" id="newLastName">
+                  formControlName="newLastName" class="form-control" id="newLastName" required>
               </div>
               <div class="d-flex justify-content-center">
                 <input type="submit" class="btn btn-primary" value="Change Last Name">

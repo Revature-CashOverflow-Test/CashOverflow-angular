@@ -1,10 +1,11 @@
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { BankAccount } from 'src/app/model/bank-account';
 import { BankAccountService } from 'src/app/service/bankAccount/bank-account.service';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-income-expense',
@@ -16,11 +17,12 @@ export class IncomeExpenseComponent implements OnInit {
   currentBalance: number = 0;
 
 
-  @Input() formAccountId: number = 0;
-  @Input() formTransactionType: number = 0;
-  @Input() formAmount: number = 0;
-  @Input() formName: string = '';
-  @Input() formDescription: string = '';
+  transferForm = new FormGroup({
+    accountId: new FormControl(''),
+    txTypeId: new FormControl(''),
+    description: new FormControl(''),
+    amount: new FormControl(''),
+  });
 
   newTransaction = {
     id: 0,
@@ -55,15 +57,8 @@ export class IncomeExpenseComponent implements OnInit {
    */
   transaction() {
 
-    this.newTransaction.accountId = this.formAccountId;
-    this.newTransaction.txTypeId = this.formTransactionType;
-    this.newTransaction.amount = this.formAmount;
-    this.newTransaction.description = this.formDescription;
-
-
-    this.bankServ.sendTransactionData(this.newTransaction).subscribe(
+    this.bankServ.sendTransactionData(this.transferForm.value).subscribe(
       (_data) => {
-        document.getElementById('amount')?.classList.remove('is-invalid');
         this.transactionSuccess = 1;
         this.success();
         this.router.navigate(['/feed']);
@@ -97,6 +92,6 @@ export class IncomeExpenseComponent implements OnInit {
   }
 
   success(): void {
-    this.toastr.success('Account Updated', `${this.newTransaction.amount} has been added to Account: ${this.newTransaction.accountId}`)
+    this.toastr.success('Account Updated', `$${this.transferForm.value.amount} has been added to your account.`)
   }
 }
