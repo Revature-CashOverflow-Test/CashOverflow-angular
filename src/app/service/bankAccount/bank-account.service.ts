@@ -129,7 +129,7 @@ export class BankAccountService {
    * Added headers to cope with CORS errors
    * @author Cameron, Amir, Chandra
    */
-  sendTransactionData(newTransaction) {
+  sendTransactionData(newTransaction: Transaction) {
     let httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       Accept: 'application/json',
