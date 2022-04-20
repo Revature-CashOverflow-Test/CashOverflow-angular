@@ -5,11 +5,11 @@
         <div class="card" style="border-radius: 15px;">
           <div class="card-body p-5">
             <h3 class="text-center mb-5">Change Email</h3>
-            <form [formGroup]="changeEmailForm" (ngSubmit)="changeEmail()">
+            <form ngNativeValidate [formGroup]="changeEmailForm" (ngSubmit)="changeEmail()">
               <div class="mb-3">
                 <label for="newEmail" class="form-label">New Email</label>
                 <input type="text" class="fortextbox" name="newEmail" placeholder="New Email" formControlName="newEmail"
-                  class="form-control" id="newEmail">
+                  class="form-control" id="newEmail" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" required>s
               </div>
               <div class="d-flex justify-content-center">
                 <input type="submit" class="btn btn-primary" value="Change Email">
