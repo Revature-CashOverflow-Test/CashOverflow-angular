@@ -34,7 +34,7 @@
 
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="password">Password</label>
-                                <input type="password" id="password" class="form-control" formControlName="password" [(ngModel)]="password" autocomplete=off required/>
+                                <input type="password" id="password" class="form-control" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" title="8-12 characters, 1 lower 1 upper 1 symbol 1 number" formControlName="password" [(ngModel)]="password" autocomplete=off required/>
 
                             </div>
 
