@@ -29,7 +29,7 @@ export class EmailToggleComponent implements OnInit {
     this.emailService.saveEmailSettings(this.changeEmailForm.controls['emailToggle'].value, this.changeEmailForm.controls['newAmount'].value).subscribe(
       (data) => {
         if(data){
-          this.toastr.success('You have successfully changed your email settigns', `Email Settings Changed!`);
+          this.toastr.success('You have successfully changed your email settings', `Email Settings Changed!`);
         }
       },
       (error: HttpErrorResponse) => {
